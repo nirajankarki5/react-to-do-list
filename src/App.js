@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Alert from "./Alert";
 import List from "./List";
 import Navbar from "./Navbar";
@@ -39,6 +39,7 @@ function App() {
         type: "success",
         msg: "edited to do",
       });
+      setIsEdit(false);
     } else {
       const newItem = {
         title: title,
@@ -56,15 +57,6 @@ function App() {
     }
   };
 
-  // Display ALERT for 3 SECOND
-  useEffect(() => {
-    const timeOut = setTimeout(() => {
-      setAlert({ show: false });
-    }, 3000);
-
-    return () => clearTimeout(timeOut);
-  }, [alert]);
-
   // When user clicks EDIT BUTTON
   const handleEdit = (id) => {
     setIsEdit(true);
@@ -77,13 +69,18 @@ function App() {
   // Save every item except deleted item
   const handleDelete = (id) => {
     setList(list.filter((item) => item.id !== id));
+    setAlert({
+      show: true,
+      type: "success",
+      msg: "To Do deleted",
+    });
   };
 
   return (
     <div className="App">
       <Navbar />
       <main className="container">
-        {alert.show && <Alert alert={alert} />}
+        {alert.show && <Alert alert={alert} setAlert={setAlert} />}
         <form>
           <div className="input-container">
             <input
