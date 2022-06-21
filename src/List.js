@@ -1,7 +1,7 @@
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 
-const List = ({ list, handleEdit }) => {
+const List = ({ list, handleEdit, handleDelete }) => {
   return (
     <div className="list-display">
       {list.map((item) => (
@@ -15,7 +15,10 @@ const List = ({ list, handleEdit }) => {
               className="edit-icon"
               onClick={() => handleEdit(item.id)}
             />
-            <AiOutlineDelete className="delete-icon" />
+            <AiOutlineDelete
+              className="delete-icon"
+              onClick={() => handleDelete(item.id)}
+            />
           </div>
         </div>
       ))}

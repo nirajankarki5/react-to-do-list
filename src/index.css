@@ -145,8 +145,10 @@ body {
 .edit-icon {
   margin-right: 1.5rem;
   color: #40916c;
+  cursor: pointer;
 }
 
 .delete-icon {
   color: #f71878;
+  cursor: pointer;
 }

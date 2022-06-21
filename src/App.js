@@ -23,6 +23,7 @@ function App() {
     } else if (isEdit) {
       // edit
       console.log("EDITTTTTT");
+      // Iterates and returns individual item and adds into the list
       setList(
         list.map((item) => {
           if (item.id === editId) {
@@ -73,6 +74,11 @@ function App() {
     setDate(item.date);
   };
 
+  // Save every item except deleted item
+  const handleDelete = (id) => {
+    setList(list.filter((item) => item.id !== id));
+  };
+
   return (
     <div className="App">
       <Navbar />
@@ -99,7 +105,7 @@ function App() {
           </button>
         </form>
         <div className="underline"></div>
-        <List list={list} handleEdit={handleEdit} />
+        <List list={list} handleEdit={handleEdit} handleDelete={handleDelete} />
       </main>
     </div>
   );
