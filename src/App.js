@@ -8,19 +8,36 @@ function App() {
   const [date, setDate] = useState("");
   const [list, setList] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
+  const [editId, setEditId] = useState("");
   const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title && !date) {
+    if (!title || !date) {
       // display alert
       setAlert({
         show: true,
         type: "danger",
-        msg: "name and date can not be empty",
+        msg: "title and date can not be empty",
       });
-    } else if (title && isEdit) {
+    } else if (isEdit) {
       // edit
+      console.log("EDITTTTTT");
+      setList(
+        list.map((item) => {
+          if (item.id === editId) {
+            return { ...item, title, date };
+          }
+          return item;
+        })
+      );
+      setTitle("");
+      setDate("");
+      setAlert({
+        show: true,
+        type: "success",
+        msg: "edited to do",
+      });
     } else {
       const newItem = {
         title: title,
@@ -38,6 +55,7 @@ function App() {
     }
   };
 
+  // Display ALERT for 3 SECOND
   useEffect(() => {
     const timeOut = setTimeout(() => {
       setAlert({ show: false });
@@ -45,6 +63,15 @@ function App() {
 
     return () => clearTimeout(timeOut);
   }, [alert]);
+
+  // When user clicks EDIT BUTTON
+  const handleEdit = (id) => {
+    setIsEdit(true);
+    const item = list.find((item) => item.id === id);
+    setEditId(id);
+    setTitle(item.title);
+    setDate(item.date);
+  };
 
   return (
     <div className="App">
@@ -72,7 +99,7 @@ function App() {
           </button>
         </form>
         <div className="underline"></div>
-        <List list={list} />
+        <List list={list} handleEdit={handleEdit} />
       </main>
     </div>
   );

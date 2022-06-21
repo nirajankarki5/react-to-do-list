@@ -115,6 +115,9 @@ body {
 }
 
 .single-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1rem 2rem;
   width: 100%;
   box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
@@ -133,4 +136,17 @@ body {
 .single-list p {
   font-size: 1.2rem;
   color: #aaa;
+}
+
+.list-icons {
+  font-size: 2.2rem;
+}
+
+.edit-icon {
+  margin-right: 1.5rem;
+  color: #40916c;
+}
+
+.delete-icon {
+  color: #f71878;
 }
