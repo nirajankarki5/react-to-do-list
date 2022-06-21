@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Alert from "./Alert";
 import List from "./List";
 import Navbar from "./Navbar";
 
+const getLocalStorage = () => {
+  let list = localStorage.getItem("list");
+  console.log(list);
+  if (list) {
+    return JSON.parse(list);
+  } else {
+    return [];
+  }
+};
+
 function App() {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalStorage);
   const [isEdit, setIsEdit] = useState(false);
   const [editId, setEditId] = useState("");
   const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
@@ -56,6 +66,11 @@ function App() {
       });
     }
   };
+
+  // Save data on local storage whenever list changes
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
 
   // When user clicks EDIT BUTTON
   const handleEdit = (id) => {
