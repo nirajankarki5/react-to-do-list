@@ -1,3 +1,20 @@
+# React TO DO LIST
+
+- add, edit, delete list
+- display alert for 3 seconds
+- save list on local storage
+- use of reaci-icons
+
+## ![Screenshot](screenshots/1.png)
+
+## ![Screenshot](screenshots/2.png)
+
+## ![Screenshot](screenshots/3.png)
+
+## ![Screenshot](screenshots/4.png)
+
+![Screenshot](screenshots/5.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
